@@ -2,7 +2,7 @@
 <html>
     <body></body>
     <script>
-        selections = ['rock', 'paper', 'scissors'];
+        selections = ['rock', 'paper', 'scissors']; //Possible selections in game
 
         function randomInt(max){
             return Math.floor(Math.random() * max);
@@ -12,21 +12,21 @@
             return selections[randomInt(3)];
         }
 
-        function playRound(playerSelection, computerSelection){ // 0 = tie, 1 = computer won, 2 = human won
+        function playRound(playerSelection, computerSelection){ //OUTPUT: 0 = tie, 1 = computer won, 2 = human won
             playerSelection = playerSelection.toLowerCase();
-            computerSelection = computerSelection.toLowerCase();
+            computerSelection = computerSelection.toLowerCase(); //Make function case insensitive
 
             let validSelections = selections.includes(playerSelection) && selections.includes(computerSelection);
-
+            //Check for invalid Selections
             if (!(validSelections)){
                 console.error('playRound() received invalid selections');
                 return null;
             }
 
             if (playerSelection == computerSelection){
-                return 0;
+                return 0; //Tie
             }
-            switch (playerSelection){
+            switch (playerSelection){ //Main logic
                 case 'rock':
                     return (computerSelection == 'paper') ? 1 : 2;
                 case 'paper':
@@ -35,7 +35,7 @@
                     return (computerSelection == 'rock') ? 1 : 2;
                 default:
                     console.error('Something went terribly wrong');
-                    return null;
+                    return null; //Not possible to reach this
             }
         }
 
@@ -60,7 +60,7 @@
                     default:
                         roundResult = 'tie';
                 }
-                console.log('Round: ' + (i+1) + ' out of 5 - ' + roundResult)
+                console.log(`Round ${i+1} out of ${rounds} - ${roundResult}`)
             }
             let message;
             if (computerScore > humanScore){
@@ -70,7 +70,7 @@
             } else {
                 message = 'Tie!';
             }
-            console.log('Final result: ' + message);
+            console.log(`Final result: ${message}`);
         }
 
         game(5);
