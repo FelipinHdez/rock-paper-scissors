@@ -46,16 +46,21 @@
             for (let i = 0; i < rounds; i++){
                 let humanPlay = window.prompt('Round ' + (i+1) + ': Rock paper or scissors', 'rock');
                 playResult = playRound(humanPlay , computerPlay());
+                let roundResult;
+
                 switch (playResult){
                     case 1:
                         computerScore++;
+                        roundResult = 'computer wins';
                         break;
                     case 2:
                         humanScore++;
+                        roundResult = 'human wins';
                         break;
                     default:
-                        //tie
+                        roundResult = 'tie';
                 }
+                console.log('Round: ' + (i+1) + ' out of 5 - ' + roundResult)
             }
             let message;
             if (computerScore > humanScore){
@@ -65,7 +70,7 @@
             } else {
                 message = 'Tie!';
             }
-            console.log(message);
+            console.log('Final result: ' + message);
         }
 
         game(5);
