@@ -1,0 +1,38 @@
+main{
+    height: 100vh;
+    max-width: 1000px;
+    margin: 50px auto;
+    background-color: lightgray;
+    border-radius: 50px;
+    padding: 50px 10%;
+}
+
+#game{
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: .5fr repeat(6, 1fr);
+    grid-auto-rows: 50px;
+    grid-template-areas:
+    ".  score1  score1  score1  score2  score2  score2"
+    ". player1 player1 player1 player2 player2 player2";
+    justify-items: center;
+    align-items: center;
+}
+
+#score1{
+    grid-area: score1;
+}
+#score2{
+    grid-area: score2;
+}
+#player1{
+    grid-area: player1;
+}
+#player2{
+    grid-area: player2;
+}
+
+button{
+    height: 100%;
+    width: 100%;
+}

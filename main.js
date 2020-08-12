@@ -1,4 +1,6 @@
-selections = ['rock', 'paper', 'scissors']; //Possible selections in game
+const selections = ['rock', 'paper', 'scissors']; //Possible selections in game
+
+game(5);
 
 function randomInt(max){
     return Math.floor(Math.random() * max);
@@ -69,4 +71,6 @@ function game(rounds){
     console.log(`Final result: ${message}`);
 }
 
-game(5);
+function addMessage(message) {
+
+}
