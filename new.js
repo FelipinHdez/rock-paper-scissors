@@ -1,7 +1,5 @@
 const humanSelections = Array.from(document.querySelectorAll('button.player1'));
 const computerSelections = Array.from(document.querySelectorAll('button.player2'));
-const instruction = document.querySelector('#instruction');
-const mainElement = document.querySelector('main');
 
 let isHumanTurn = true;
 let isGameOver = false;
@@ -19,6 +17,7 @@ function humanPlay(event){
         return;
     }
 
+    const instruction = document.querySelector('#instruction');
     instruction.classList.add('hidden')
     humanSelections.forEach(element => {
         element.classList.remove('selected');
@@ -36,13 +35,18 @@ function humanPlay(event){
     let result = getResult();
     let message = getMessage(result);
     addMessage(message);
+    updateResults();
 
     if (humanScore >= 5){
         gameOver = true;
-        addMessage(`YOU WON!! CONGRATS [${humanScore} - ${computerScore}]`)
+        setInterval(() => {
+            addMessage(`YOU WON!! CONGRATS!!!`)
+        }, 500);
     }else if(computerScore >= 5){
         isGameOver = true;
-        addMessage(`You lost :( [${humanScore} - ${computerScore}]`)
+        setInterval(() => {
+            addMessage(`YOU LOST D:`)
+        }, 500);
     }
 
     return;
@@ -77,20 +81,29 @@ function getResult(){
 function getMessage(result){
     switch (result){
         case 0:
-            return 'you tied!'
+            return 'tie :|'
         case 1:
             computerScore++;
-            return (Math.random() > .9) ? 'computer wins!' : 'computer wins! haha loser';
+            return (Math.random() < .99) ? 'you lost this round :(' : 'computer won! haha loser';
         case 2:
             humanScore++;
-            return 'human wins!';
+            return (Math.random() < .99) ? 'you won this round :)' :'YOU WON!! (this round)';
     }
 }
 
 function addMessage(message){
+    const mainElement = document.querySelector('main');
     const pElement = document.createElement('p');
     pElement.innerText = message;
-    mainElement.append(pElement);
+    mainElement.insertBefore(pElement, mainElement.childNodes[10]);
+}
+
+function updateResults() {
+    const score1 = document.querySelector('#score1');
+    const score2 = document.querySelector('#score2');
+    score1.textContent = humanScore;
+    score2.textContent = computerScore;
+
 }
 
 function randomInt(max){
