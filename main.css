@@ -5,28 +5,30 @@ body{
 }
 
 main{
-    width: 90vw;
+    height: 100%;
     box-sizing: border-box;
     max-width: 1000px;
-    margin: auto;
+    margin: 10vh auto 0 auto;
     display: flex;
     flex-direction: column;
     background-color: black;
     /*background-image: linear-gradient(to bottom right, darkmagenta, darkblue);*/
-    border-radius: 50px;
+    border-radius: 50px 50px 0 0;
     padding: 0px 50px 30px 50px;
     font-family: monospace;
+    font-size: 20px;
     text-align: center;
 }
 
 h1{
-    font-size: 4em;
+    font-size: 3em;
     font-weight: bold;
     margin: 30px;
     color: white;
 }
 
 p{
+    transition: all .1s;
     margin: 10px auto;
     font-weight: bold;
     color: white;
@@ -39,7 +41,7 @@ p{
     " score1  score1  score1  score2  score2  score2"
     "player1 player1 player1 player2 player2 player2";
     gap: 10px;
-    margin-bottom: 20px;
+    margin: 20px 0px;
 }
 
 #score1{
@@ -58,6 +60,17 @@ p{
     grid-area: player2;
 }
 
+.grid-item{
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 125);
+}
+
+.grid-header{
+    background-color: yellow;    
+}
+
 button{
     height: 95%;
     width: 95%;
@@ -66,21 +79,22 @@ button{
 }
 
 button.selected{
-    background-color: rgb(255, 255, 125);
-    box-shadow: 0px 0px 5px 2px rgb(255, 255, 125);
+    background-color: yellow;
+    box-shadow: 0px 0px 5px 2px yellow;
 }
 
 button.player1:hover, .button-hover{
-    background-color: rgb(255, 255, 125);
+    background-color: yellow;
+}
+
+button.player2{
+    transition: all .5s;
 }
 
 .emoji{
     font-size: 75px;
 }
 
-.grid-item{
-    border-radius: 10px;
-    height: 100%;
-    width: 100%;
-    background-color: yellow;
+.hidden{
+    opacity: 0;
 }
