@@ -29,25 +29,15 @@ function humanPlay(event){
     computerPlay();
     setTimeout(() => {
         isHumanTurn = true;
-        instruction.classList.remove('hidden')
+        if (!isGameOver){
+            instruction.classList.remove('hidden')
+        }
     }, 1000)
 
     let result = getResult();
     let message = getMessage(result);
     addMessage(message);
     updateResults();
-
-    if (humanScore >= 5){
-        gameOver = true;
-        setInterval(() => {
-            addMessage(`YOU WON!! CONGRATS!!!`)
-        }, 500);
-    }else if(computerScore >= 5){
-        isGameOver = true;
-        setInterval(() => {
-            addMessage(`YOU LOST D:`)
-        }, 500);
-    }
 
     return;
 }
@@ -103,6 +93,34 @@ function updateResults() {
     const score2 = document.querySelector('#score2');
     score1.textContent = humanScore;
     score2.textContent = computerScore;
+
+    const humanGrid = Array.from(document.querySelectorAll('#score1, #player1'));
+    const computerGrid = Array.from(document.querySelectorAll('#score2, #player2'));
+
+    if (humanScore >= 5){
+        isGameOver = true;
+        humanGrid.forEach(element =>{
+            element.classList.add('green')
+        });
+        computerGrid.forEach(element =>{
+            element.classList.add('red')
+        });
+        setInterval(() => {
+            addMessage(`YOU WON!! CONGRATS!!!`)
+        }, 500);
+    }
+    else if(computerScore >= 5){
+        isGameOver = true;
+        humanGrid.forEach(element =>{
+            element.classList.add('red')
+        });
+        computerGrid.forEach(element =>{
+            element.classList.add('green')
+        });
+        setInterval(() => {
+            addMessage(`YOU LOST D:`)
+        }, 500);
+    }
 
 }
 
